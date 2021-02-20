@@ -2,7 +2,6 @@ import React from "react";
 import { Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { People } from "../../containers/dashboard/types";
-import Loader from "../Loader/Loader";
 
 interface Props {
   people: People;
@@ -15,9 +14,7 @@ interface Props {
 
 function PaginationInput(props: Props) {
   const { people, pageNumber } = props;
-  if (people === null) {
-    return <Loader />;
-  }
+
   return (
     <div>
       <Space size={"middle"}>

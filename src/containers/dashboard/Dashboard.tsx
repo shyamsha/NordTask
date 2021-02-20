@@ -1,4 +1,4 @@
-import React, { Component, Dispatch } from "react";
+import React, { Component } from "react";
 import { message, Space } from "antd";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -14,6 +14,7 @@ import {
   getSpeciesRequest,
 } from "./actions";
 import { People, speciesResult } from "./types";
+import { Dispatch } from "redux";
 
 interface PropsFromState {
   loading: boolean;
@@ -82,7 +83,9 @@ class Dashboard extends Component<AllProps, State> {
 
   render() {
     const { loading, people } = this.props;
-
+    if(!loading&&people===null){
+      return <Loader/>
+    }
     return (
       <React.Fragment>
         <Container>
@@ -111,7 +114,6 @@ class Dashboard extends Component<AllProps, State> {
             </div>
           </Space>
         </Container>
-        {loading ? <Loader /> : null}
       </React.Fragment>
     );
   }
@@ -125,6 +127,7 @@ const Layout = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width:100%;
 `;
 
 const mapStateToProps: any = ({ people }: ApplicationState) => ({

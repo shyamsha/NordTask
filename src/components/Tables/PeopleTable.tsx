@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "antd";
 import { People } from "../../containers/dashboard/types";
-import Loader from "../Loader/Loader";
+import WithLoader from "../WithLoader/WithLoader";
 
 interface Props {
   people: People;
@@ -50,10 +50,6 @@ function PeopleTable(props: Props) {
     }
   ];
 
-  if (people === null) {
-    return <Loader />;
-  }
-
   return (
     <React.Fragment>
         <Table
@@ -67,4 +63,4 @@ function PeopleTable(props: Props) {
   );
 }
 
-export default PeopleTable;
+export default WithLoader(PeopleTable);
